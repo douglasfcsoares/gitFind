@@ -1,3 +1,8 @@
+body{
+  font-family: 'Roboto', 'Arial';
+  color: white;
+}
+
 .content {
   position: relative;
 
@@ -16,15 +21,15 @@
 .info {
   width: 60%;
   margin-right: 90px;
-  margin-top: 100px;
+  margin-top: 80px;
 }
 
-.info p {
+/* .info p {
   color: white;
   margin-bottom: 1rem;
   font-family: 'Roboto', 'Arial';
   font-size: 30px;
-}
+} */
 
 input {
   border: 1px solid #999999;
@@ -57,4 +62,42 @@ button {
 
 button:hover {
   background: #8e949c;
+}
+
+.perfil {
+  display: flex;
+  margin: 3rem 0;
+}
+
+.profile {
+  width: 130px;
+  height: 130px;
+  border-radius: 75px;
+  border: 2px solid #E5E5E5;
+  margin-right: 2rem;
+}
+
+.perfil h3 {
+  color: #999999;
+  font-size: 28px;
+  margin: 0;
+}
+
+.perfil span{
+  display: block;
+  color: #999999;
+  font-size: 16px;
+  margin: 0;
+}
+
+.perfil p{
+  color: #999999;
+  font-size: 16px;
+  margin: 20px 0 0 0;
+}
+
+.repository h4 {
+  margin: 1rem 0;
+  font-size: 34px;
+  text-align: center;
 }
