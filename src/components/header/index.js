@@ -1,12 +1,11 @@
-import React from 'react'
-import './styles.css'
+import "./styles.css";
 
 const Header = () => {
-  return(
+  return (
     <header>
       <h1>GitFind</h1>
     </header>
-  )
-}
+  );
+};
 
-export { Header }
+export { Header };

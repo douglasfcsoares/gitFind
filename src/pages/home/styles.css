@@ -1,5 +1,5 @@
-body{
-  font-family: 'Roboto', 'Arial';
+body {
+  font-family: "Roboto", "Arial";
   color: white;
 }
 
@@ -7,15 +7,17 @@ body{
   position: relative;
 
   display: flex;
-  align-items: flex-start ;
+  align-items: flex-start;
   justify-content: flex-end;
   height: 90vh;
 }
 
 .background {
-  position: absolute;
-  left: 0;
-  height: 90vh;
+  position: fixed;
+  width: 800px;
+  top: 12%;
+  left: -400px;
+  z-index: -1;
 }
 
 .info {
@@ -41,7 +43,7 @@ input {
 
   width: 70%;
   min-width: 250px;
-  padding: .6rem;
+  padding: 0.6rem;
 }
 
 button {
@@ -51,10 +53,10 @@ button {
   background: #2d333b;
 
   font-size: 18px;
-  font-family: 'Roboto', 'Arial';
+  font-family: "Roboto", "Arial";
 
   width: 20%;
-  padding: .6rem;
+  padding: 0.6rem;
   margin-left: 2rem;
 
   /* animation-duration: 4s; */
@@ -73,7 +75,7 @@ button:hover {
   width: 130px;
   height: 130px;
   border-radius: 75px;
-  border: 2px solid #E5E5E5;
+  border: 2px solid #e5e5e5;
   margin-right: 2rem;
 }
 
@@ -83,14 +85,14 @@ button:hover {
   margin: 0;
 }
 
-.perfil span{
+.perfil span {
   display: block;
   color: #999999;
   font-size: 16px;
   margin: 0;
 }
 
-.perfil p{
+.perfil p {
   color: #999999;
   font-size: 16px;
   margin: 20px 0 0 0;

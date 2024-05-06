@@ -1,9 +1,42 @@
+import { useState } from "react";
 import { Header } from "../../components/header/index.js";
-import ItemList, {} from "../../components/itemList/index.jsx";
-import background from "../../assets/octocat.png";
-import './styles.css';
+import ItemList from "../../components/itemList/index.jsx";
+import background from "../../assets/octocat-mark.svg";
+import "./styles.css";
 
 function App() {
+  const [user, setUser] = useState("");
+  const [currentUser, setCurrentUser] = useState("");
+  const [repos, setRepos] = useState("");
+
+  const handleGetData = async () => {
+    const userData = await fetch(`https://api.github.com/users/${user}`);
+    const newUser = await userData.json();
+
+    console.log(newUser);
+
+    if (newUser.name) {
+      const { avatar_url, name, login, bio } = newUser;
+      setCurrentUser({
+        avatar_url,
+        name,
+        login,
+        bio
+      });
+
+      const reposData = await fetch(
+        `https://api.github.com/users/${user}/repos`
+      );
+      const newRepos = await reposData.json();
+
+      console.log(newRepos);
+
+      if (newRepos.length) {
+        setRepos(newRepos);
+      }
+    }
+  };
+
   return (
     <div className="App">
       <Header />
@@ -11,26 +44,41 @@ function App() {
         <img src={background} className="background" alt="background app" />
         <div className="info">
           <div>
-            <input name="user" placeholder="@username" />
-            <button>Search</button>
+            <input
+              name="user"
+              value={user}
+              onChange={event => setUser(event.target.value)}
+              placeholder="@username"
+            />
+            <button onClick={handleGetData}>Search</button>
           </div>
-          <div className="perfil">
-            <img src="https://avatars.githubusercontent.com/u/62715161?s=400&u=7351297a7a413114cc424c3bba2a3407a084dae9&v=4" className="profile" alt="Imagem do perfil do Dev" />
-            <div>
-              <h3>
-                Douglas Soares
-              </h3>
-              <span>@douglasfcsoares</span>
-              <p>Descrição do perfil</p>
+
+          {currentUser.name ? (
+            <>
+              <div className="perfil">
+                <img
+                  src={currentUser.avatar_url}
+                  className="profile"
+                  alt="Imagem do perfil do Dev"
+                />
+                <div>
+                  <h3>{currentUser.name}</h3>
+                  <span>@{currentUser.login}</span>
+                  <p>{currentUser.bio}</p>
+                </div>
+              </div>
+              <hr />
+            </>
+          ) : null}
+
+          {repos.length ? (
+            <div className="repository">
+              <h4>Repositórios</h4>
+              {repos.map(repo => (
+                <ItemList title={repo.name} description={repo.description} />
+              ))}
             </div>
-          </div>
-          <hr />
-          <div className="repository">
-            <h4>Repositórios</h4>
-            <ItemList title='Teste1' description='teste de descrição 01' />
-            <ItemList title='Teste2' description='teste de descrição 02' />
-            <ItemList title='Teste3' description='teste de descrição 03' />
-          </div>
+          ) : null}
         </div>
       </div>
     </div>
